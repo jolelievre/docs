@@ -58,6 +58,7 @@ jobs:
         with:
           path: ${{ github.workspace }}/var/docs
           ref: ${{ matrix.doc_branch }}
+          token: ${{ secrets.JARVIS_TOKEN }}
 
       - name: Execute core command to export the JSON API doc
         run: |
@@ -68,5 +69,4 @@ jobs:
         run: |
           git config --global user.name 'Jarvis'
           git config --global user.email 'jarvis@prestashop.com'
-          git remote set-url origin https://x-access-token:${{ secrets.JARVIS_TOKEN }}@github.com/${{ github.repository }}
           git commit -am "Auto updated API doc json" && git push || echo "No changes to commit"
